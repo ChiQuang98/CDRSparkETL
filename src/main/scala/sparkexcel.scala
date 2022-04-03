@@ -8,7 +8,7 @@ object sparkexcel {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     val spark = SparkSession.builder()
-//          .master("local[*]")
+          .master("local[*]")
       .appName("finalspark")
 //      .config("spark.sql.broadcastTimeout","36000")
 //      .enableHiveSupport()
@@ -25,18 +25,19 @@ object sparkexcel {
 //      maxRowsInMemory = 20,  // Optional, default None. If set, uses a streaming reader which can help with big files (will fail if used with xls format files)
 //      excerptSize = 10,  // Optional, default: 10. If set and if schema inferred, number of rows to infer schema from
 //      workbookPassword = "pass"  // Optional, default None. Requires unlimited strength JCE for older JVMs
-    ).load("/user/ttcntt_icrs/CDR_Project/ListDataBCA/20220327_phonenumber.xlsx")
+    ).load("E:\\20220327_phonenumber_codephonenumber113.xlsx")
 //    ).load("E:\\Project\\CDR\\20220327_phonenumber.xlsx")
     df.show()
+    println(df.count())
 //    df.printSchema()
-    df.write
-      .format("com.crealytics.spark.excel") // Or .format("excel") for V2 implementation
-//      .option("dataAddress", "MySheetQ")
-      .option("header", "true")
-//      .option("dateFormat", "yy-mmm-d") // Optional, default: yy-m-d h:mm
-//      .option("timestampFormat", "mm-dd-yyyy hh:mm:ss") // Optional, default: yyyy-mm-dd hh:mm:ss.000
-      .mode("overwrite") // Optional, default: overwrite.
-      .save("/user/ttcntt_icrs/CDR_Project/ListDataBCA/20220327_phonenumber_output.xlsx")
+//    df.write
+//      .format("com.crealytics.spark.excel") // Or .format("excel") for V2 implementation
+////      .option("dataAddress", "MySheetQ")
+//      .option("header", "true")
+////      .option("dateFormat", "yy-mmm-d") // Optional, default: yy-m-d h:mm
+////      .option("timestampFormat", "mm-dd-yyyy hh:mm:ss") // Optional, default: yyyy-mm-dd hh:mm:ss.000
+//      .mode("overwrite") // Optional, default: overwrite.
+//      .save("/user/ttcntt_icrs/CDR_Project/ListDataBCA/20220327_phonenumber_output.xlsx")
 
 
 

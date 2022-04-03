@@ -8,17 +8,19 @@ object Loadparquet {
     val spark = SparkSession.builder().master("local[*]")
       .getOrCreate()
 //    val df = spark.read.parquet("E:\\Project\\CDR\\file\\etl_output\\outname").drop("day_key").cache().distinct().dropDuplicates("isdn","name","sta_datetime")
-    val df = spark.read.parquet("E:\\Project\\CDR\\file\\New folder\\t")
-    df.show(false)
+val df = spark.read.options(Map("inferSchema"->"true","delimiter"->",","header"->"true"))
+  .csv("E:\\detail")
+    df
+      .show(false)
     println(df.count())
 //    val filter = df.filter(df("calling_isdn").contains("703480999"))
 //    df.coalesce(1).write.mode(SaveMode.Overwrite).option("header",true)
-//      .csv("E:\\Project\\CDR\\file\\qua")
+//      .csv("E:\\Project\\CDR\\file\\New folder\\detail_imeii")
 //    filter.show(false)
     df.write
       .format("com.crealytics.spark.excel") // Or .format("excel") for V2 implementation
       .option("header", "true")
       .mode("overwrite") // Optional, default: overwrite.
-      .save("E:\\Project\\CDR\\detail_output1.xlsx")
+      .save("E:\\q.xlsx")
   }
 }

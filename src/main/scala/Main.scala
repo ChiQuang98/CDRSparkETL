@@ -1,4 +1,5 @@
 
+import org.apache.hadoop.fs.FileUtil
 import org.apache.log4j.{Level, Logger}
 import spark.SparkCT
 import utils.DateTimeUtils._
@@ -12,7 +13,7 @@ object Main {
     if (arr.size() < 1) {
       //    if(!true){
       println("Chua co file de xu ly")
-      System.exit(0)
+      System.exit(1)
     }
     else {
       val pathFileDataBCA = arr.get(0) //date:yyyymmdd_type_codevanban
@@ -29,11 +30,17 @@ object Main {
 
       SparkCT.initConfigHadoop()
       if(typeSearch.compareToIgnoreCase("phonenumber")==0){
-        println("IN")
         SparkCT.JobPhoneNumber(nameOutputFile, pathFileDataBCA, dateSearchHive, dateSearch6MonthHive)
+        //Xoa file request da xu ly xong
+        deleteFileInHdfs(conf,pathFileDataBCA)
       } else if(typeSearch.compareToIgnoreCase("imei")==0){
         SparkCT.JobImei(nameOutputFile, pathFileDataBCA, dateSearchHive, dateSearch6MonthHive)
+        deleteFileInHdfs(conf,pathFileDataBCA)
       }
+      else{
+        System.exit(1)
+      }
+
     }
   }
 }
