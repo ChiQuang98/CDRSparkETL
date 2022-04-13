@@ -26,8 +26,7 @@ object Main {
       val nameOutputFile = tempName(2)//mavanban.csv or mavanban.xlsx
       val dateSearch6MonthSpark = getSixMonthBefore(dateSearchSpark)
       val dateSearch6MonthHive = formartDateHive(dateSearch6MonthSpark)
-//      println(nameOutputFile,pathFileDataBCA,dateSearch6MonthHive,dateSearchHive,typeSearch)
-
+      println(nameOutputFile,pathFileDataBCA,dateSearch6MonthHive,dateSearchHive,typeSearch,"QUANG1")
       SparkCT.initConfigHadoop()
       if(typeSearch.compareToIgnoreCase("phonenumber")==0){
         SparkCT.JobPhoneNumber(nameOutputFile, pathFileDataBCA, dateSearchHive, dateSearch6MonthHive)

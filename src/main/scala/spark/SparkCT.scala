@@ -29,6 +29,7 @@ object SparkCT {
   }
 
   def JobPhoneNumber(nameOutputFile: String, pathFileDataBCA: String, dateSearchHive: String, dateSearch6MonthHive: String): Unit = {
+
     val listPhoneSchema = StructType(Array(
       StructField("phonenumber", StringType, true)
     ))
@@ -75,7 +76,7 @@ object SparkCT {
     val df_detail = spark.sql(query_detail).persist()
     val df_name_subcriber_cache = spark.sql(query_subcriber).cache()
     val df_name_mc_subcriber_cache = spark.sql(query_mcsubcriber).cache()
-
+    println("QUANG2")
 
     val df_name_subcriber = df_name_subcriber_cache.withColumn("sta_datetime",
       from_unixtime(unix_timestamp(df_name_subcriber_cache("sta_datetime"), "yyyy-MM-dd HH:mm:ss"), "dd/MM/yyyy HH:mm:ss"))
