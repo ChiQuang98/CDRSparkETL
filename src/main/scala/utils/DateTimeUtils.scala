@@ -24,7 +24,7 @@ object DateTimeUtils {
     import java.util.Calendar
     val calendar = Calendar.getInstance
     calendar.setTime(dateCurr)
-    calendar.add(Calendar.MONTH,-1)
+    calendar.add(Calendar.MONTH,-6)
     toFormat.format(calendar.getTime)
   }
 }

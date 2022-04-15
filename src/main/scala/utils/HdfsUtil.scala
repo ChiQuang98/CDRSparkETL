@@ -21,6 +21,7 @@ object HdfsUtil {
     } catch {
       case e: Exception =>
         e.printStackTrace()
+        System.exit(1)
       //            logger.error("Hdfs Get File error: ", e);
     }
     listFile
@@ -37,6 +38,7 @@ object HdfsUtil {
     } catch {
       case e: Exception =>
         e.printStackTrace()
+          System.exit(1)
       //            logger.error("Hdfs Get File error: ", e);
     }
     listFile
@@ -74,6 +76,7 @@ object HdfsUtil {
     } catch {
       case e: IOException =>
         e.printStackTrace()
+        System.exit(1)
     }
   }
 }
